@@ -23,7 +23,26 @@ class AppFixtures extends Fixture
     {
 
 
-        $user1 = new User();
+        // $user1 = new User();
+        // $user1->setEmail('test@example.com');
+        // $user1->setPassword(
+        //     $this->userPasswordHasher->hashPassword(
+        //         $user1,
+        //         '12345678'
+        //         )
+        //     );
+        //     $manager->persist($user1);
+        
+        $user2 = new User();
+        $user2->setEmail('test2@example.com');
+        $user2->setPassword(
+            $this->userPasswordHasher->hashPassword(
+                $user2,
+                '12345678'
+                )
+            );
+            $manager->persist($user2);  
+
 
 
         $microPost1 = new MicroPost();
