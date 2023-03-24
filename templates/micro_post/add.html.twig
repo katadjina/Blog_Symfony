@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{# //this is displayed on te tab #}
+{% block title %}Create New Post{% endblock %} 
+
+{% block bread %}
+-> Add Post
+{% endblock %}
+
+{% block body %}
+   {{ include ('micro_post/_form.html.twig') }}
+{% endblock %}
+
