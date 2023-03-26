@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 
 class MicroPostController extends AbstractController
@@ -43,9 +44,22 @@ class MicroPostController extends AbstractController
 
 
     #[Route('/micro-post/add', name: 'app_micro_post_add', priority: 2, )]   //methods: ['GET']??
-    public function add(Request $request, MicroPostRepository $posts): Response
-    {
-      
+    #[IsGranted('IS_AUTHENTICATED_FULLY')] 
+    public function add(
+        Request $request, 
+        MicroPostRepository $posts
+    ): Response{
+        //denying access to website visitors that are not authenticated
+        //one of the way of limiting user's access to controllers method
+        //so if in url you will type /micro-post/add you will be redirected to login page if u r not logged in
+        //this can be done also by using attributes (below the route)
+
+        //the same is done by using the attribute --> there are slight dfferences 
+        // $this->denyAccessUnlessGranted(
+        //     'IS_AUTHENTICATED_FULLY'
+        // );
+
+
         $form = $this->createForm(MicroPostType::class, new MicroPost());  //available bc of the Abstract controller
            
 
@@ -55,6 +69,7 @@ class MicroPostController extends AbstractController
             if ($form->isSubmitted() && $form->isValid()){
                 $post = $form->getData();
                 $post->setCreated(new DateTime());
+                $post->setAuthor($this->getUser());
                 $posts->add($post, true);
                // dd($post);
 
@@ -78,6 +93,8 @@ class MicroPostController extends AbstractController
 
 
     #[Route('/micro-post/{post}/edit', name: 'app_micro_post_edit' )]   //methods: ['GET']??
+    //has to be logged in to edit the post
+    #[IsGranted('ROLE_EDITOR')]  
     public function edit(MicroPost $post, Request $request, MicroPostRepository $posts): Response
     {
         $form = $this->createForm(MicroPostType::class, $post);
@@ -89,6 +106,7 @@ class MicroPostController extends AbstractController
             if ($form->isSubmitted() && $form->isValid()){
                 $post = $form->getData();
                 //$post->setCreated(new DateTime());  we are not creating new date -> we keep the original date
+                $post->setAuthoe($this->getUser());
                 $posts->add($post, true);
                // dd($post);
 
@@ -114,7 +132,9 @@ class MicroPostController extends AbstractController
     //comment
 
 
-    #[Route('/micro-post/{post}/comment', name: 'app_micro_post_comment' )]  
+    #[Route('/micro-post/{post}/comment', name: 'app_micro_post_comment' )]
+    //user has to be logged in to comment
+    #[IsGranted('ROLE_COMMENTER')]   
     public function addComment(MicroPost $post, Request $request, CommentRepository $comments): Response
     {
         $form = $this->createForm(CommentType::class, new Comment());
@@ -123,6 +143,8 @@ class MicroPostController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
             $comment = $form->getData();
             $comment->setPost($post);
+            //getting the current user
+            $comment->setAuthor($this->getUser());
             $comments->add($comment, true);
 
             //Add a flash message
