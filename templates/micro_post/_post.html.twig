@@ -1,5 +1,5 @@
 <div class="mb-5 ml-5 mr-5 mt-5 block rounded-lg bg-white p-6 shadow-lg " >
-    <div class="text-2xl mb-5 ml-5">
+    <div class="text-2xl mb-5 ml-5 text-decoration-line: underline">
         <a href="{{ path('app_micro_post_show' , {post: post.id}) }}">
             {{ post.title}}
         </a>
@@ -8,23 +8,23 @@
         {{ post.text }}
     </div>
 
-    <div class="text-sm text-blue-600">
+    <div class="text-sm text-blue-600 ml-5 mr-5 mb-1">
         <a href="#"> {{ post.author.email }}</a>
     </div>
-    <div class="text-gray:200 text-sm">
+    <div class="text-gray-500 text-sm ml-5 mr-5 mb-5">
         {{ post.created | date("M j, Y") }}
     </div>
-    <div class="flex flex-col">
+    <div class="flex flex-col ml-5 mr-5">
         <a href="#">
             Like <span class="px-2 rounded-md bg-blue-200"> 0 </span>
         </a>
     
-        <a href=" {{ path('app_micro_post_comment' , {post: post.id}) }}"> 
+        <a href=" {{ path('app_micro_post_comment' , {post: post.id}) }}" class="mb-2"> 
             Comment <span class="px-2 rounded-md bg-blue-200 "> {{post.comments.count}}</span>
         </a>
 
         <a href=" {{ path('app_micro_post_edit' , {post: post.id}) }}" class="mr-4"> 
-            Edit 
+             <span> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pen"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg> </span>
         </a>
   
     </div>
