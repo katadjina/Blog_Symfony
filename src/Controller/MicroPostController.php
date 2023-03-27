@@ -32,6 +32,7 @@ class MicroPostController extends AbstractController
     //function for showing only one post by its id
     //using Param Converter
     #[Route('/micro-post/{post}', name: 'app_micro_post_show')]
+    #[IsGranted(MicroPost::VIEW, 'post')]
     public function showOne(MicroPost $post): Response
     {
         //dd($post);
@@ -43,7 +44,7 @@ class MicroPostController extends AbstractController
     }
 
 
-    #[Route('/micro-post/add', name: 'app_micro_post_add', priority: 2, )]   //methods: ['GET']??
+    #[Route('/micro-post/add', name: 'app_micro_post_add', priority: 2, )]  
     #[IsGranted('IS_AUTHENTICATED_FULLY')] 
     public function add(
         Request $request, 
@@ -94,28 +95,29 @@ class MicroPostController extends AbstractController
 
     #[Route('/micro-post/{post}/edit', name: 'app_micro_post_edit' )]   //methods: ['GET']??
     //has to be logged in to edit the post
-    #[IsGranted('ROLE_EDITOR')]  
+    // #[IsGranted('ROLE_EDITOR')]  
+    #[IsGranted(MicroPost::EDIT, 'post')]
     public function edit(MicroPost $post, Request $request, MicroPostRepository $posts): Response
     {
         $form = $this->createForm(MicroPostType::class, $post);
-            
+        $form->handleRequest($request);
+
+        $this->denyAccessUnlessGranted(MicroPost::EDIT, $post);
 
 
-            $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()){
+            $post = $form->getData();
+            //$post->setCreated(new DateTime());  we are not creating new date -> we keep the original date
+            $post->setAuthor($this->getUser());
+            $posts->add($post, true);
+            // dd($post);
 
-            if ($form->isSubmitted() && $form->isValid()){
-                $post = $form->getData();
-                //$post->setCreated(new DateTime());  we are not creating new date -> we keep the original date
-                $post->setAuthoe($this->getUser());
-                $posts->add($post, true);
-               // dd($post);
+            //Add a flash message
+            $this->addFlash('success', 'Post has been updated');
 
-               //Add a flash message
-                $this->addFlash('success', 'Post has been updated');
-
-                return $this->redirectToRoute('app_micro_post');
-               //Redirect
-            }
+            return $this->redirectToRoute('app_micro_post');
+            //Redirect
+        }
 
         return $this->render(  //not renderForm ??
             'micro_post/edit.html.twig',
@@ -134,7 +136,9 @@ class MicroPostController extends AbstractController
 
     #[Route('/micro-post/{post}/comment', name: 'app_micro_post_comment' )]
     //user has to be logged in to comment
-    #[IsGranted('ROLE_COMMENTER')]   
+    //#[IsGranted('ROLE_COMMENTER')]
+    //just needs to be authenticated to comment
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]   
     public function addComment(MicroPost $post, Request $request, CommentRepository $comments): Response
     {
         $form = $this->createForm(CommentType::class, new Comment());
