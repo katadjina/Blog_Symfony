@@ -19,3 +19,11 @@ volumes:
 ###> doctrine/doctrine-bundle ###
   database_data:
 ###< doctrine/doctrine-bundle ###
+
+# //copied from created file docker-compose.override
+ mailer:
+    image: schickling/mailcatcher
+    ports:
+      - 1080:1080
+      - 1025:1025
+    # ports: ["1025", "1080"]

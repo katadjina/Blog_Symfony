@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
+
 use App\Repository\CommentRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\Constraints\DateTime;
+use DateTime;
 
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
 class Comment
@@ -21,16 +22,16 @@ class Comment
     #[Assert\Length(min: 1, max:500)]
     private ?string $text = null;
 
-    #[ORM\ManyToOne(inversedBy: 'comments')]
+    #[ORM\ManyToOne(targetEntity: MicroPost::class, inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?MicroPost $post = null;
+    private $post ;
 
-    #[ORM\ManyToOne(inversedBy: 'comments')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $author = null;
+    private $author ;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $created = null;
+    #[ORM\Column(type: 'datetime')]
+    private $created;
 
     //date added automatically
     public function __construct(){
