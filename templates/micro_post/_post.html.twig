@@ -1,25 +1,32 @@
 <div class="mb-5 ml-5 mr-5 mt-5 block rounded-lg bg-white p-6 shadow-lg " >
-    <div class="text-2xl">
+    <div class="text-2xl mb-5 ml-5">
         <a href="{{ path('app_micro_post_show' , {post: post.id}) }}">
             {{ post.title}}
         </a>
     </div>	
-    <div class="text-xl">
+    <div class="text-xl ml-5 mr-5 mb-5">
         {{ post.text }}
     </div>
-    <div class="text-gray:500">
-        {{ post.created | date("M j, Y") }}
-    </div>
-    <div>
-        <a href="#">
-            Like <span class="px-2 rounded-md bg-gray-400"> 0 </span>
-        </a>
-    </div>
-    <div class="text-sm text-gray-500">
+
+    <div class="text-sm text-blue-600">
         <a href="#"> {{ post.author.email }}</a>
     </div>
-    <div class="flex">
-        <a href=" {{ path('app_micro_post_edit' , {post: post.id}) }}" class="mr-4"> Edit </a>
-        <a href=" {{ path('app_micro_post_comment' , {post: post.id}) }}"> Comment <span class="px-2 rounded-md bg-gray-400 "> {{post.comments.count}}</span></a>
+    <div class="text-gray:200 text-sm">
+        {{ post.created | date("M j, Y") }}
     </div>
+    <div class="flex flex-col">
+        <a href="#">
+            Like <span class="px-2 rounded-md bg-blue-200"> 0 </span>
+        </a>
+    
+        <a href=" {{ path('app_micro_post_comment' , {post: post.id}) }}"> 
+            Comment <span class="px-2 rounded-md bg-blue-200 "> {{post.comments.count}}</span>
+        </a>
+
+        <a href=" {{ path('app_micro_post_edit' , {post: post.id}) }}" class="mr-4"> 
+            Edit 
+        </a>
+  
+    </div>
+
 </div>

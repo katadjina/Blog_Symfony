@@ -5,7 +5,7 @@ namespace App\Controller;
 use DateTime;
 use App\Entity\Comment;
 use App\Entity\MicroPost;
-use App\Entity\CommentType;
+use App\Form\CommentType;
 use App\Form\MicroPostType;
 use App\Repository\CommentRepository;
 use App\Repository\MicroPostRepository;
@@ -149,7 +149,7 @@ class MicroPostController extends AbstractController
             $comment->setPost($post);
             //getting the current user
             $comment->setAuthor($this->getUser());
-            $comments->add($comment, true);
+            $comments->save($comment, true); //from comment repo
 
             //Add a flash message
             $this->addFlash('success', 'Comment added successfully');
