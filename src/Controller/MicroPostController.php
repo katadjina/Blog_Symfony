@@ -19,7 +19,11 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class MicroPostController extends AbstractController
 {
-    #[Route('/micro-post', name: 'app_micro_post')]
+    #[Route('/all')]
+    #[Route('/post')]
+    #[Route('/blog')]
+    #[Route('/micro-post')]
+    #[Route('/', name: 'app_micro_post')]
     public function index(MicroPostRepository $posts): Response
     {
         //dd($posts->findAll());
