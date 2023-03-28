@@ -14,18 +14,14 @@
         {% endblock %}
 
         <script src="https://cdn.tailwindcss.com"></script>
-        <script>
-            {# tailwind.config = {
-                darkMode: 'class'
-            } #}
-        </script>
+       
     </head>
-    <body class="h-14 bg-gradient-to-r from-cyan-500 to-blue-500 m-10">
+    <body class="h-16 bg-gradient-to-r from-cyan-800 to-black-100 to-blue-900 m-10">
         <nav class="px-2 bg-white border-gray-200 "> 
         </nav>
     
         <div class="w-full md:w-2/3 mx-auto mb-4 flex justify-between items-center">
-            <div class="text-4xl">
+            <div class="text-4xl text-white">
                 <a href="{{ path('app_micro_post') }}">Feed</a>
                 {% block bread %}
 
@@ -35,20 +31,24 @@
             <div class="text-right">
                 <div class="text-sm text-gray-500 dark:text-gray-400 flex">
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <div class="ext-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+                    <div class="text-gray-700 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2">
                         <a href="{{ path('app_micro_post_add') }}">Add New</a>
                     </div>
                     <div class="ml-2">
                         {# <a href="{{ path('app_settings_profile') }}">Profile Settings</a> #}
                     </div>
-                    <div class="ml-2 ext-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+                    <div class="ml-2 text-gray-700 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2">
                         <a href="{{ path('app_logout') }}">Logout</a>
                     </div>
+
+                    <div class="ml-2 text-gray-700 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2">
+                      <a href=#> Filter </a>
+                    </div>
                     {% else %}
-                    <div class="ext-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+                    <div class="text-gray-700 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2">
                         <a href="{{ path('app_login') }}">Login</a>
                     </div>
-                    <div class="ml-2 ext-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2  ">
+                    <div class="ml-2 text-gray-700 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2  ">
                          <a href="{{ path('app_register') }}">Sign Up</a> 
                     </div>
                     {% endif %}

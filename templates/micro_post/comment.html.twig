@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Post - Add comment{% endblock %}
+{% block title %} comment{% endblock %}
 
-{% block bread %}post 
--> <a href="{{ path('app_micro_post_show', {post: post.id}) }}"> Post </a>  -> Comment
+{% block bread %}
+    -> <a href="{{ path('app_micro_post_show', {post: post.id}) }}"> Post </a>  -> Comment
 {% endblock %}
 
 {% block body %}
@@ -13,13 +13,13 @@
     <div>  {{ form_errors(form) }} </div>
 
     <div>
-        {{ form_label(form.text, 'add your comment', {'label_attr' : {'class' : 'block text-sm text-gray-700 dark:text-gray-300 font-medium'}} ) }} 
-        {{ form_widget(form.text, {'attr' : {'class' : 'block w-full shadow-sm border-gray-300 dark-border-transparent dark:text-gray-800 rounded-md border p-2 mt-1 mb-2'}}) }} 
+        {{ form_label(form.text, 'Add Your Comment:', {'label_attr' : {'class' : 'block text-sm text-white font-medium'}} ) }} 
+        {{ form_widget(form.text, {'attr' : {'class' : 'block w-full h-300 shadow-sm border-gray-300  rounded-md border p-2 mt-1 mb-2'}}) }} 
         {{ form_errors(form.text) }} 
     </div>
 
-    <div>
-        <button type="submit" class="block w-full shadow-sm border-transparent bg-indigo-600 hover:bg-indigo-700 text-white rounded-md border p-2 mt-4 mb-2"> add comment </button>
+    <div class="flex justify-center items-center ">
+        <button type="submit" class="block w-30 shadow-sm border-transparent bg-indigo-200 hover:bg-indigo-500 text-white hover:text-black rounded-md border p-2 mt-4 mb-2"> SUBMIT </button>
     </div>
     {{ form_end(form) }}
 {% endblock %}

@@ -5,7 +5,7 @@ namespace App\Controller;
 use DateTime;
 use App\Entity\Comment;
 use App\Entity\MicroPost;
-use App\Entity\CommentType;
+use App\Form\CommentType;
 use App\Form\MicroPostType;
 use App\Repository\CommentRepository;
 use App\Repository\MicroPostRepository;
@@ -19,7 +19,12 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class MicroPostController extends AbstractController
 {
-    #[Route('/micro-post', name: 'app_micro_post')]
+    #[Route('/all')]
+    #[Route('/post')]
+    #[Route('/blog')]
+    #[Route('/home')]
+    #[Route('/micro-post')]
+    #[Route('/', name: 'app_micro_post')]
     public function index(MicroPostRepository $posts): Response
     {
         //dd($posts->findAll());
@@ -149,7 +154,7 @@ class MicroPostController extends AbstractController
             $comment->setPost($post);
             //getting the current user
             $comment->setAuthor($this->getUser());
-            $comments->add($comment, true);
+            $comments->save($comment, true); //from comment repo
 
             //Add a flash message
             $this->addFlash('success', 'Comment added successfully');
