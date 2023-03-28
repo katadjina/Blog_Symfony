@@ -13,7 +13,9 @@ class MicroPostType extends AbstractType
     {
         $builder
             ->add('title')
+            // ->add('category')
             ->add('text')
+            
             // ->add('created')
         ;
     }

@@ -1,21 +1,58 @@
 {{ form_start(form, {'attr' : {'novalidate' : 'novalidate'}}) }}
-<div>  {{ form_errors(form) }} </div>
-
 <div>
-  {{ form_label(form.title, 'Enter the title' , {'label_attr' : {'class' : 'block text-sm text-gray-700 dark:text-gray-300 font-medium'}}) }} 
-  {{ form_widget(form.title, {'attr' : {'class' : 'block w-full shadow-sm border-gray-300  rounded-md border p-2 mt-1 mb-2'}}) }} 
-  {{ form_errors(form.title) }}
+	{{ form_errors(form) }}
 </div>
 
 <div>
-    {{ form_label(form.text, 'Type some text' , {'label_attr' : {'class' : 'block text-sm text-gray-700  font-medium'}} ) }} 
-    {{ form_widget(form.text, {'attr' : {'class' : 'block w-full shadow-sm border-gray-300 rounded-md border p-2 mt-1 mb-2'}})}} 
-    {{ form_errors(form.title) }}
+	{{ form_label(form.title, 'Enter the title' , {'label_attr' : {'class' : 'block text-sm text-gray-400 font-medium'}}) }}
+	{{ form_widget(form.title, {'attr' : {'class' : 'block w-full shadow-sm border-gray-300  rounded-md border p-2 mt-1 mb-2'}}) }}
+	{{ form_errors(form.title) }}
+</div>
+
+<div>
+	{{ form_label(form.category, 'Category' , {'label_attr' : {'class' : 'block text-sm text-gray-400  font-medium'}}
+	) }}
+	{{ form_widget(form.category, {'attr' : {'class' : 'block w-full shadow-sm border-gray-300 rounded-md border p-2 mt-1 mb-2'}})}}
+	{{ form_errors(form.title) }}
 </div>
 
 
 <div>
-  <button type="submit" class="block w-full shadow-sm border-transparent bg-indigo-600 hover:bg-indigo-700 text-white rounded-md border p-2 mt-4 mb-2"> POST </button>
+	{{ form_label(form.text, 'Type some text' , {'label_attr' : {'class' : 'block text-sm text-gray-400  font-medium'}}
+	) }}
+	{{ form_widget(form.text, {'attr' : {'class' : 'block w-full shadow-sm border-gray-300 rounded-md border p-2 mt-1 mb-2'}})}}
+	{{ form_errors(form.title) }}
+</div>
+
+
+<button id="dropdownDelayButton" data-dropdown-toggle="dropdownDelay" data-dropdown-delay="500" data-dropdown-trigger="hover" class="text-white bg-pink-300  focus:ring-4 focus:outline-none focus:ring-pink-700 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">CATEGORY
+	<svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+		<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+	</svg>
+</button>
+<!-- Dropdown menu -->
+<div id="dropdownDelay" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+	<ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDelayButton">
+		<li>
+			<a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+		</li>
+		<li>
+			<a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+		</li>
+		<li>
+			<a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+		</li>
+		<li>
+			<a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</a>
+		</li>
+	</ul>
+</div>
+
+
+<div>
+	<button type="submit" class="block w-full shadow-sm border-transparent bg-indigo-600 hover:bg-indigo-700 text-white rounded-md border p-2 mt-4 mb-2">
+		POST
+	</button>
 </div>
 
 {{ form_end(form) }}
