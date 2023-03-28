@@ -1,6 +1,6 @@
 {% block form_errors %}
     {% if errors|length > 0%}
-        <div class="pb-2 text-red-700 dark:text-red-300">
+        <div class="pb-2 text-red-700">
             {% for error in errors %}
                 <div> {{ error.message}} </div>
             {% endfor %}

@@ -11,6 +11,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasher;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
+
 class AppFixtures extends Fixture
 {
 
@@ -33,32 +34,37 @@ class AppFixtures extends Fixture
         //     );
         //     $manager->persist($user1);
         
-        $user2 = new User();
-        $user2->setEmail('test2@example.com');
-        $user2->setPassword(
-            $this->userPasswordHasher->hashPassword(
-                $user2,
-                '12345678'
-                )
-            );
-            $manager->persist($user2);  
+        // $user2 = new User();
+        // $user2->setEmail('test2@example.com');
+        // $user2->setPassword(
+        //     $this->userPasswordHasher->hashPassword(
+        //         $user2,
+        //         '12345678'
+        //         )
+        //     );
+        //     $manager->persist($user2);  
 
 
 
-        $microPost1 = new MicroPost();
-        $microPost1->setTitle('First Post');
-        $microPost1->setText('Hi User! This is the very first post');
-        $microPost1->setCreated(new DateTime());
-        $microPost1->setAuthor($user2);
-        $manager->persist($microPost1);
+        // $microPost1 = new MicroPost();
+        // $microPost1->setTitle('First Post');
+        // $microPost1->setText('Hi User! This is the very first post');
+        // $microPost1->setCreated(new DateTime());
+        // $microPost1->setAuthor($user2);
+        // $manager->persist($microPost1);
 
-        $microPost2 = new MicroPost();
-        $microPost2->setTitle('Second Post');
-        $microPost2->setText('Posting posts is great, I love it');
-        $microPost2->setCreated(new DateTime());
-        $microPost2->setAuthor($user2);
-        $manager->persist($microPost2);
+        // $microPost2 = new MicroPost();
+        // $microPost2->setTitle('Second Post');
+        // $microPost2->setText('Posting posts is great, I love it');
+        // $microPost2->setCreated(new DateTime());
+        // $microPost2->setAuthor($user2);
+        // $manager->persist($microPost2);
 
-        $manager->flush();
+        // $manager->flush();
+
+     
+
+
+
     }
 }

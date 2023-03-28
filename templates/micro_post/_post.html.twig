@@ -1,39 +1,86 @@
-<div class="mb-5 ml-5 mr-5 mt-5 block rounded-lg bg-white p-6 shadow-lg " >
+<div class="mb-5 ml-5 mr-5 mt-5 block rounded-lg bg-white p-6 shadow-lg ">
 
-    <div class="mr-15 flex flex-row justify-end rounded-md block w-full grid "> 
-         <div class="py-2 px-4 bg-pink-300 rounded-full"> Category </div>
-    </div>
-    <div class="text-2xl mb-5 ml-5 text-decoration-line: underline">
-        <a href="{{ path('app_micro_post_show' , {post: post.id}) }}">
-            {{ post.title}}
-        </a>
-    </div>	
-    <div class="text-xl ml-5 mr-5 mb-5">
-        {{ post.text }}
-    </div>
+	<div class="mr-15 flex flex-row justify-end rounded-md block w-full grid ">
+		<div class="py-2 px-4 bg-pink-300 rounded-full">
+			{% if  (post.category != null)  %}
+				<a href="{{ path('app_micro_post_show' , {post: post.id}) }}">
+					{{ post.category}}
+				{% endif %}
+			</a>
+		</div>
+	</div>
+	<div class="text-2xl mb-5 ml-5 text-decoration-line: underline">
+		<a href="{{ path('app_micro_post_show' , {post: post.id}) }}">
+			{{ post.title}}
+		</a>
+	</div>
+	<div class="text-xl ml-5 mr-5 mb-5">
+		{{ post.text }}
+	</div>
 
-    <div class="text-sm text-blue-600 ml-5 mr-5 mb-1">
-        <a href="#"> {{ post.author.email }}</a>
-    </div>
-    <div class="text-gray-500 text-sm ml-5 mr-5 mb-5">
-        {{ post.created | date("M j, Y") }}
-    </div>
-    <div class="flex flex-col ml-5 mr-5 h-full w-full bg-red">
-        <a href="#">
-            Like <span class="px-2 rounded-md bg-blue-200"> 0 </span>
-        </a>
-    
-        <a href=" {{ path('app_micro_post_comment' , {post: post.id}) }}" class="mb-2"> 
-            Comment <span class="px-2 rounded-md bg-blue-200 "> {{post.comments.count}}</span>
-        </a>
+	<div class="text-sm text-blue-600 ml-5 mr-5 mb-1">
+		<a href="#">
+			{{ post.author.email }}</a>
+	</div>
+	<div class="text-gray-500 text-sm ml-5 mr-5 mb-5">
+		{{ post.created | date("M j, Y") }}
+	</div>
+	<div class="flex flex-col ml-5 mr-5 h-full w-full bg-red">
+		{% if post.likedBy.contains(app.user) %}
+			<a href="{{ path('app_unlike' , {id: post.id})}}">
+				Unlike
+				<span
+					class="px-2 rounded-md bg-blue-200">
+					{# //likedBy property on the entity --> getLikedBy method #}
+					{{post.likedBy.count}}
+				</span>
+			</a>
+		{% else %}
+			<a href="{{ path('app_like' , {id: post.id})}}">
+				Like
+				<span
+					class="px-2 rounded-md bg-blue-200">
+					{# //likedBy property on the entity --> getLikedBy method #}
+					{{post.likedBy.count}}
+				</span>
+			</a>
+		{% endif %}
 
-{# enable editiong only to the post owner #}
-    {% if post.author.email == app.user.email %} 
-        <a href=" {{ path('app_micro_post_edit' , {post: post.id}) }}" class="mr-4"> 
-             <span> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pen"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg> </span>
-        </a>
-     {% endif %} 
-  
-    </div>
+		<a href=" {{ path('app_micro_post_comment' , {post: post.id}) }}" class="mb-2">
+			Comment
+			<span class="px-2 rounded-md bg-blue-200 ">
+				{{post.comments.count}}</span>
+		</a>
+
+		{# enable editing/deleting only to the post owner & admin #}
+		{# {% if post.author.email == app.user.email or app.user.email == 'admin@admin.com' %} #}
+		{# {% if post.author.email != null %}
+					{% if  post.author.email == app.user.email  %} #}
+			<div class="flex flex-row"> <a href=" {{ path('app_micro_post_edit' , {post: post.id}) }}" class="mr-4">
+				<span>
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pen">
+						<path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+						<path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+						<path d="M2 2l7.586 7.586"></path>
+						<circle cx="11" cy="11" r="2"></circle>
+					</svg>
+				</span>
+			</a>
+
+			<a href="#" {post: post.id} class="mr-4">
+				<span>
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2">
+						<polyline points="3 6 5 6 21 6"></polyline>
+						<path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+						<line x1="10" y1="11" x2="10" y2="17"></line>
+						<line x1="14" y1="11" x2="14" y2="17"></line>
+					</svg>
+				</span>
+			</a>
+		</div>
+		{# {% endif %}
+				{% endif %} #}
+
+	</div>
 
 </div>

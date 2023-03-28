@@ -66,27 +66,38 @@ class MicroPostController extends AbstractController
         // );
 
 
-        $form = $this->createForm(MicroPostType::class, new MicroPost());  //available bc of the Abstract controller
-           
+        //testing
+        //1st version:
+        // $form = $this->createForm(MicroPostType::class, new MicroPost());  //available bc of the Abstract controller
+        
+        $microPost = new MicroPost();
+        $form = $this->createFormBuilder($microPost)
+            ->add('title')
+            ->add('text')
+            ->add('category')
+            ->getForm();
 
 
-            $form->handleRequest($request);
 
-            if ($form->isSubmitted() && $form->isValid()){
-                $post = $form->getData();
-                $post->setCreated(new DateTime());
-                $post->setAuthor($this->getUser());
-                $posts->add($post, true);
-               // dd($post);
+      
+        $form->handleRequest($request);
 
-               //Add a flash message
-                $this->addFlash('success', 'Post added successfully');
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $post = $form->getData();
+            $post->setCreated(new DateTime());
+            $post->setAuthor($this->getUser());
+            $posts->add($post, true);
+            // dd($post);
 
-                return $this->redirectToRoute('app_micro_post');
-               //Redirect
-            }
+            //Add a flash message
+            $this->addFlash('success', 'Post added successfully');
 
-        return $this->render(  //not renderForm ??
+            return $this->redirectToRoute('app_micro_post');
+            //Redirect
+        }
+
+        return $this->render( 
             'micro_post/add.html.twig',
             [
                 'form' => $form
@@ -104,7 +115,13 @@ class MicroPostController extends AbstractController
     #[IsGranted(MicroPost::EDIT, 'post')]
     public function edit(MicroPost $post, Request $request, MicroPostRepository $posts): Response
     {
-        $form = $this->createForm(MicroPostType::class, $post);
+        
+        $form = $this->createFormBuilder($post)
+            ->add('title')
+            ->add('text')
+            ->add('category')
+            ->getForm();
+        
         $form->handleRequest($request);
 
         $this->denyAccessUnlessGranted(MicroPost::EDIT, $post);
@@ -124,7 +141,7 @@ class MicroPostController extends AbstractController
             //Redirect
         }
 
-        return $this->render(  //not renderForm ??
+        return $this->render(  
             'micro_post/edit.html.twig',
             [
                 'form' => $form,

@@ -46,11 +46,22 @@ class MicroPost
     #[ORM\JoinColumn(nullable: false)]
     private ?User $author = null;
 
+    #[ORM\ManyToMany(targetEntity: Category::class, mappedBy: 'microPosts')]
+    #[ORM\JoinTable(name: 'categories_posts')]
+    private Collection $categories;
+
+    #[ORM\Column(length: 55, nullable: false)]
+    private ?string $category = null;
+
+   
+   
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
         $this->likedBy = new ArrayCollection();
         $this->created = new DateTime;
+        $this->categories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -159,4 +170,37 @@ class MicroPost
 
         return $this;
     }
+
+    public function getCategories(): Collection{
+        return $this->categories;
+    }
+
+    public function addCategory(Category $category): self {
+        if (!$this->categories->contains($category)){
+            $this->categories[] = $category;
+            $category->addMicroPost($this);
+        }
+        return $this;
+    }
+
+
+    // public function removeCategory(Category $category) : self {
+    //     if(!$this->categories->contains($category)){
+    //         $category->removeMicroPost($this);
+    //     }
+    //     return $this;
+    // }
+
+    public function getCategory(): ?string
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?string $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+  
 }
