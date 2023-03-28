@@ -22,6 +22,7 @@ class MicroPostController extends AbstractController
     #[Route('/all')]
     #[Route('/post')]
     #[Route('/blog')]
+    #[Route('/home')]
     #[Route('/micro-post')]
     #[Route('/', name: 'app_micro_post')]
     public function index(MicroPostRepository $posts): Response
