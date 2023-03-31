@@ -9,7 +9,7 @@
 {% block body %}
     {{ include('micro_post/_post.html.twig' , {post: post}) }}
 
-    <div class="mt-4"> 
+    <div class="mt-4 data-te-chip-init data-te-ripple-init"> 
     {% for comment in post.comments %}
         <div class=" mb-5 ml-5 mr-5 mt-5 block p-6 bg-gray-400 border border-gray-400 rounded-lg shadow ">
             <div class="flex items-center">

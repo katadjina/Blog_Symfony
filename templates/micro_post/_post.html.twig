@@ -20,7 +20,7 @@
 
 	<div class="text-sm text-blue-600 ml-5 mr-5 mb-1">
 		<a href="#">
-			{{ post.author.email }}</a>
+			{{ post.author.nickname}}</a>
 	</div>
 	<div class="text-gray-500 text-sm ml-5 mr-5 mb-5">
 		{{ post.created | date("M j, Y") }}
@@ -45,15 +45,17 @@
 				</span>
 			</a>
 		{% endif %}
-
+	{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 		<a href=" {{ path('app_micro_post_comment' , {post: post.id}) }}" class="mb-2">
 			Comment
 			<span class="px-2 rounded-md bg-blue-200 ">
 				{{post.comments.count}}</span>
 		</a>
+		{% endif %}
 
+	{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 		{# enable editing/deleting only to the post owner & admin #}
-		{# {% if post.author.email == app.user.email or app.user.email == 'admin@admin.com' %} #}
+		{% if post.author.email == app.user.email or app.user.email == 'admin@admin.com' %} 
 		{# {% if post.author.email != null %}
 					{% if  post.author.email == app.user.email  %} #}
 			<div class="flex flex-row"> <a href=" {{ path('app_micro_post_edit' , {post: post.id}) }}" class="mr-4">
@@ -78,9 +80,9 @@
 				</span>
 			</a>
 		</div>
-		{# {% endif %}
-				{% endif %} #}
-
+		{% endif %}
+				{# {% endif %} #} 
+	{% endif %}
 	</div>
 
 </div>
