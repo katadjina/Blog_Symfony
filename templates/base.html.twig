@@ -33,8 +33,11 @@
 			<div class="text-right">
 				<div class="text-sm text-gray-500 flex">
 					{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-						<div class="text-gray-700 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2">
+						<div class="text-gray-700 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 ">
 							<a href="{{ path('app_micro_post_add') }}">Add New</a>
+						</div>
+						<div class="text-gray-700 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 ml-2">
+							<a href="{{ path('app_profile') }}">My Profile</a>
 						</div>
 						<div
 							class="ml-2">{# <a href="{{ path('app_settings_profile') }}">Profile Settings</a> #}
@@ -62,10 +65,10 @@
 
 		{# //display user name if connected #}
 		{# <div> 
-				        	{% if  post.author.email != null %}
-				            <h2> Hello {{ post.author.email}}</h2>
-				            {% endif %}
-				        </div> #}
+						        	{% if  post.author.email != null %}
+						            <h2> Hello {{ post.author.email}}</h2>
+						            {% endif %}
+						        </div> #}
 
 		<div class="w-full md:w-2/3 mx-auto">
 			{% for message in app.flashes('success') %}

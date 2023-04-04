@@ -18,7 +18,7 @@ class UserProfileType extends AbstractType
             ->add('twitterUsername')
             ->add('company')
             ->add('location')
-            ->add('dateOfBirth')
+            
             // ->add('user')
         ;
     }
