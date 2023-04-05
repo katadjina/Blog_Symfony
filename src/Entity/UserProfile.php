@@ -20,14 +20,7 @@ class UserProfile
     #[ORM\Column(length: 1024, nullable: true)]
     private ?string $bio = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $websiteUrl = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $twitterUsername = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $company = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $location = null;
@@ -38,6 +31,9 @@ class UserProfile
     #[ORM\OneToOne(inversedBy: 'userProfile', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image = null;
 
     public function getId(): ?int
     {
@@ -68,42 +64,7 @@ class UserProfile
         return $this;
     }
 
-    public function getWebsiteUrl(): ?string
-    {
-        return $this->websiteUrl;
-    }
-
-    public function setWebsiteUrl(?string $websiteUrl): self
-    {
-        $this->websiteUrl = $websiteUrl;
-
-        return $this;
-    }
-
-    public function getTwitterUsername(): ?string
-    {
-        return $this->twitterUsername;
-    }
-
-    public function setTwitterUsername(?string $twitterUsername): self
-    {
-        $this->twitterUsername = $twitterUsername;
-
-        return $this;
-    }
-
-    public function getCompany(): ?string
-    {
-        return $this->company;
-    }
-
-    public function setCompany(?string $company): self
-    {
-        $this->company = $company;
-
-        return $this;
-    }
-
+   
     public function getLocation(): ?string
     {
         return $this->location;
@@ -136,6 +97,18 @@ class UserProfile
     public function setUser(User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

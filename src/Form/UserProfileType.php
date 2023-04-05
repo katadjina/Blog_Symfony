@@ -6,6 +6,9 @@ use App\Entity\UserProfile;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\File;
+
 
 class UserProfileType extends AbstractType
 {
@@ -14,13 +17,23 @@ class UserProfileType extends AbstractType
         $builder
             ->add('name')
             ->add('bio')
-            ->add('websiteUrl')
-            ->add('twitterUsername')
-            ->add('company')
             ->add('location')
-            
+            ->add('image' , FileType::class , [
+                'label' => "Choose your profile photo",
+                //not mapped to any object
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png'
+                        ]
+                    ])
+                ]
+            ]);
             // ->add('user')
-        ;
+        
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	My Profile
+{% endblock %}
+
+{% block bread %}
+	-> User Profile
+{% endblock %}
+
+{% block body %}
+
+
+	<div class="p-10"></div>
+	<div data-te-chip-init data-te-ripple-init class="[word-wrap: break-word] text-3xl my-[5px] mr-4 flex h-[52px] cursor-pointer items-center justify-between rounded-[26px] bg-[#eceff1] py-0 px-[12px] p-5 font-normal normal-case leading-loose text-[#4f4f4f] ">
+		<img class="my-0 mr-[8px] -ml-[12px] h-[inherit] w-[inherit] rounded-[100%]" src="https://tecdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp" alt="avatar"/>
+		{{ user.nickname ?? user.email}}
+        {# {{ user.location ?? "somewhere"}} #}
+		<span data-te-chip-close class="float-right w-4 cursor-pointer pl-[8px] text-[16px] text-[#afafaf] pt-4">
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-3 w-3">
+				<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+			</svg>
+		</span>
+	</div>
+</div>
+
+
+<div class="p-1">
+	<div class="p-5 flex flex-col items-center   rounded-lg shadow  mt-5 mb-6 md:h-auto h-2">
+		{# <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg" src="/docs/images/blog/image-4.jpg" alt=""> #}
+		<div class="flex flex-col items-center bg-[#eceff1] rounded-lg shadow p-5 mt-5 mb-6 md:h-auto w-80  pb-40 text-grey-800 text-grey-800 text-3xl font-mono">
+		</div>
+
+		<h2 class="text-white text-xl">
+			POSTS :
+		</h2>
+		<div>
+			{{ include ('micro_post/posts_all.html.twig' , {posts: user.posts}) }}
+		</div>
+	</div>
+</div>{% endblock %}
