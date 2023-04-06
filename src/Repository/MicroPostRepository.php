@@ -21,7 +21,7 @@ class MicroPostRepository extends ServiceEntityRepository
         parent::__construct($registry, MicroPost::class);
     }
 
-    public function add(MicroPost $entity, bool $flush = false): void   //initially called save
+    public function add(MicroPost $entity, bool $flush = false): void   
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class MicroPostRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(MicroPost $entity, bool $flush = false): void
+    public function delete(MicroPost $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class MicroPostRepository extends ServiceEntityRepository
     }
 
 
-    public function findAllWithComments(): array
+    public function findAll(): array
     {
         return $this->createQueryBuilder('p')
             ->addSelect('c')

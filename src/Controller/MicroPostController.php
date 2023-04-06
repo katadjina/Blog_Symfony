@@ -9,12 +9,15 @@ use App\Form\CommentType;
 use App\Form\MicroPostType;
 use App\Repository\CommentRepository;
 use App\Repository\MicroPostRepository;
+use Doctrine\ORM\EntityManagerInterface;
+// use Symfony\Bridge\Doctrine\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 
 class MicroPostController extends AbstractController
@@ -25,22 +28,22 @@ class MicroPostController extends AbstractController
     #[Route('/home')]
     #[Route('/micro-post')]
     #[Route('/', name: 'app_micro_post')]
-    public function index(MicroPostRepository $posts): Response
+    public function index(MicroPostRepository $rep): Response
     {
         //dd($posts->findAll());
+        //repo method
         return $this->render('micro_post/index.html.twig', [
-            'posts' => $posts->findAllWithComments(),
+            'posts' => $rep->findAll(),
         ]);
     }
 
-
-    //function for showing only one post by its id
-    //using Param Converter
+    //showOny by ID
+    //Param Converter
     #[Route('/micro-post/{post}', name: 'app_micro_post_show')]
     #[IsGranted(MicroPost::VIEW, 'post')]
     public function showOne(MicroPost $post): Response
     {
-        //dd($post);
+        //dd($posts->find(id));
 
         return $this->render('micro_post/show.html.twig', [
 
@@ -48,26 +51,22 @@ class MicroPostController extends AbstractController
         ]);
     }
 
+    // OR-->
+  
+    // public function showOne($id, MicroPostRepository $posts): Response
+    // {
+    //     //dd($posts->find(id));
 
+    // }
+
+
+
+
+    //denying access to website visitors that are not authenticated
     #[Route('/micro-post/add', name: 'app_micro_post_add', priority: 2, )]  
     #[IsGranted('IS_AUTHENTICATED_FULLY')] 
-    public function add(
-        Request $request, 
-        MicroPostRepository $posts
-    ): Response{
-        //denying access to website visitors that are not authenticated
-        //one of the way of limiting user's access to controllers method
-        //so if in url you will type /micro-post/add you will be redirected to login page if u r not logged in
-        //this can be done also by using attributes (below the route)
-
-        //the same is done by using the attribute --> there are slight dfferences 
-        // $this->denyAccessUnlessGranted(
-        //     'IS_AUTHENTICATED_FULLY'
-        // );
-
-
+    public function add( Request $request, MicroPostRepository $posts ): Response{
         //testing
-        //1st version:
         // $form = $this->createForm(MicroPostType::class, new MicroPost());  //available bc of the Abstract controller
         
         $microPost = new MicroPost();
@@ -76,8 +75,6 @@ class MicroPostController extends AbstractController
             ->add('text')
             ->add('category')
             ->getForm();
-
-
 
       
         $form->handleRequest($request);
@@ -105,14 +102,46 @@ class MicroPostController extends AbstractController
         );
     }
 
+    
+    // #[Route('/micro-post/delete/{id}', name: 'app_micro_post_delete' )]  
+    // #[IsGranted('IS_AUTHENTICATED_FULLY')] 
+    // public function delete(ManagerRegistry $doctrine, int $id): Response
+    // {
 
-    //update method
+    //     $entityManager = $doctrine->getManager();
+    //     $post = $entityManager->getRepository(MicroPost::class)->find($id);
+
+    //     $entityManager->remove($post);
+    //     $entityManager->flush();
+        
+
+    //      //Add a flash message
+    //      $this->addFlash('error', 'Post remove');
+      
+    //     return $this->redirectToRoute('app_micro_post', [], Response::HTTP_SEE_OTHER);
+    // }
 
 
-    #[Route('/micro-post/{post}/edit', name: 'app_micro_post_edit' )]   //methods: ['GET']??
+
+    //DELETE 2
+
+
+    #[Route('/micro-post/delete/{id}', name: 'app_micro_post_delete' )]  
+    #[IsGranted('IS_AUTHENTICATED_FULLY')] 
+    public function delete(MicroPost $post, EntityManagerInterface $entityManager): Response
+    {
+        $entityManager->remove($post);
+        $entityManager->flush();
+    
+        return new Response(null, Response::HTTP_NO_CONTENT);
+    }
+
+
+    #[Route('/micro-post/{post}/edit', name: 'app_micro_post_edit' )]   
     //has to be logged in to edit the post
     // #[IsGranted('ROLE_EDITOR')]  
-    #[IsGranted(MicroPost::EDIT, 'post')]
+    // #[IsGranted(MicroPost::EDIT, 'post')]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')] 
     public function edit(MicroPost $post, Request $request, MicroPostRepository $posts): Response
     {
         

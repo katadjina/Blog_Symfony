@@ -1,0 +1,11 @@
+<div class="block w-full flex grid grid-cols-1 justify-center ">
+	{% if posts|length > 0 %}
+		{% for post in posts %}
+			{{ include('micro_post/_post.html.twig' , {post: post})}}
+		{% endfor %}
+	{% else %}
+		<h1>
+			No posts yet
+		</h1>
+	{% endif %}
+</div>

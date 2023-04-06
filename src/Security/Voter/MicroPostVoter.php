@@ -55,7 +55,7 @@ class MicroPostVoter extends Voter
             case MicroPost::VIEW:
                 // if (!$subject->isExtraPrivacy()) {
                 //     return true;
-                // }
+                // 
              
                 return true;
                 // return $isAuth && 
@@ -66,4 +66,4 @@ class MicroPostVoter extends Voter
 
         return false;
     }
-}
+} #}

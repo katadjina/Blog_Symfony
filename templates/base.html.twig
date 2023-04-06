@@ -1,74 +1,85 @@
 <!DOCTYPE html>
 <html class="">
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}BLOG{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}BLOG
+			{% endblock %}
+		</title>
+		<link
+		rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
 
-        <script src="https://cdn.tailwindcss.com"></script>
-       
-    </head>
-    <body class="h-16 bg-gradient-to-r from-cyan-800 to-black-100 to-blue-900 m-10">
-        <nav class="px-2 bg-white border-gray-200 "> 
-        </nav>
-    
-        <div class="w-full md:w-2/3 mx-auto mb-4 flex justify-between items-center">
-            <div class="text-4xl text-white">
-                <a href="{{ path('app_micro_post') }}">Feed</a>
-                {% block bread %}
+		<script src="https://cdn.tailwindcss.com"></script>
 
-                {% endblock %}
-            </div>
+	</head>
+	<body
+		class="h-16 bg-gradient-to-r from-cyan-800 to-black-100 to-blue-900 m-10">
+		{# <nav class="px-2 bg-white border-gray-200 "></nav> #}
 
-            <div class="text-right">
-                <div class="text-sm text-gray-500 dark:text-gray-400 flex">
-                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <div class="text-gray-700 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2">
-                        <a href="{{ path('app_micro_post_add') }}">Add New</a>
-                    </div>
-                    <div class="ml-2">
-                        {# <a href="{{ path('app_settings_profile') }}">Profile Settings</a> #}
-                    </div>
-                    <div class="ml-2 text-gray-700 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2">
-                        <a href="{{ path('app_logout') }}">Logout</a>
-                    </div>
+		<div class="w-full md:w-2/3 mx-auto mb-4 flex justify-between items-center">
+			<div class="text-4xl text-white">
+				<a href="{{ path('app_micro_post') }}">Blog_</a>
+				{% block bread %}{% endblock %}
+			</div>
 
-                    <div class="ml-2 text-gray-700 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2">
-                      <a href=#> Filter </a>
-                    </div>
-                    {% else %}
-                    <div class="text-gray-700 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2">
-                        <a href="{{ path('app_login') }}">Login</a>
-                    </div>
-                    <div class="ml-2 text-gray-700 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2  ">
-                         <a href="{{ path('app_register') }}">Sign Up</a> 
-                    </div>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
+			<div class="text-right">
+				<div class="text-sm text-gray-500 flex">
+					{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+						<div class="text-gray-700 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 ">
+							<a href="{{ path('app_micro_post_add') }}">Add New</a>
+						</div>
+						<div class="text-gray-700 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 ml-2">
+							<a href="{{ path('app_profile') }}">My Profile</a>
+						</div>
+						<div
+							class="ml-2">{# <a href="{{ path('app_settings_profile') }}">Profile Settings</a> #}
+						</div>
+						<div class="ml-2 text-gray-700 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2">
+							<a href="{{ path('app_logout') }}">Logout</a>
+						</div>
 
-        {# //display user name if connected #}
-        {# <div> 
-        	{% if  post.author.email != null %}
-            <h2> Hello {{ post.author.email}}</h2>
-            {% endif %}
-        </div> #}
+						<div class="ml-2 text-gray-700 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2">
+							<a href="#">
+								Filter
+							</a>
+						</div>
+					{% else %}
+						<div class="text-gray-700 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2">
+							<a href="{{ path('app_login') }}">Login</a>
+						</div>
+						<div class="ml-2 text-gray-700 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2  ">
+							<a href="{{ path('app_register') }}">Sign Up</a>
+						</div>
+					{% endif %}
+				</div>
+			</div>
+		</div>
 
-        <div class="w-full md:w-2/3 mx-auto">
-        {% for message in app.flashes('success') %}
-            <div class="rounded-md p-2 border-green-300 bg-green-50 border dark:border-green-600 dark:bg-green-700 dark:text-white mb-4">{{ message }}</div>
-        {% endfor %}
+		{# //display user name if connected #}
+		{# <div> 
+						        	{% if  post.author.email != null %}
+						            <h2> Hello {{ post.author.email}}</h2>
+						            {% endif %}
+						        </div> #}
 
-        {% block body %}{% endblock %}
-        </div>   
-    </body>
-</html>
+		<div class="w-full md:w-2/3 mx-auto">
+			{% for message in app.flashes('success') %}
+				<div class="rounded-md p-2 border-green-300 bg-green-50 border">{{ message }}</div>
+			{% endfor %}
+
+			{% block body %}{% endblock %}
+		</div>
+	</body>
+
+	<footer class="fixed bottom-0 justify-between items-center w-full h-5 flex bg-pink-100 text-center text-gray-700 p-2">
+		<p>BLOG_ Copyright © 2023</p>
+	</footer>
+</html></div></html>

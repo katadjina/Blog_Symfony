@@ -9,36 +9,48 @@
 
 {% block body %}
     {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="rounded-md p-2 border-red-300 bg-red-50 border dark:border-red-600 dark:bg-green-700 dark:text-white mb-4" role="alert">{{ flash_error }}</div>
+        <div class="rounded-md p-2 border-red-300 bg-red-50 border text-white-100  mb-4" role="alert">{{ flash_error }}</div>
     {% endfor %}
 
     {{ form_start(registrationForm) }}
         <div>
-            {{ form_label(registrationForm.email, 'Your email', {'label_attr': {'class': 'block text-sm text-gray-700 dark:text-gray-300 font-medium'}}) }}
-            {{ form_widget(registrationForm.email, {'attr': {'class': 'block w-full shadow-sm border-gray-300 dark:border-transparent dark:text-gray-800 rounded-md border p-2 mt-1 mb-2'}})}}
+            {{ form_label(registrationForm.email, 'Your email', {'label_attr': {'class': 'block text-sm text-white  font-medium'}}) }}
+            {{ form_widget(registrationForm.email, {'attr': {'class': 'block w-full shadow-sm border-gray-300 text-white-200 rounded-md border p-2 mt-1 mb-2'}})}}
             {{ form_errors(registrationForm.email) }}
+        </div>
+
+         <div>
+            {{ form_label(registrationForm.nickname, 'Nickname', {'label_attr': {'class': 'block text-sm text-white font-medium'}}) }}
+            {{ form_widget(registrationForm.nickname, {'attr': {'class': 'block w-full shadow-sm border-gray-300  rounded-md border p-2 mt-1 mb-2'}})}}
+            {{ form_errors(registrationForm.nickname) }}
+        </div>
+
+          <div>
+            {{ form_label(registrationForm.birthdate, 'Date of Birth', {'label_attr': {'class': 'block text-sm text-white font-medium'}}) }}
+            {{ form_widget(registrationForm.birthdate, {'attr': {'class': 'block w-full shadow-sm border-gray-300  rounded-md border p-2 mt-1 mb-2', 'type': 'date'}})}}
+            {{ form_errors(registrationForm.birthdate) }}
         </div>
 
 
         <div>
-            {{ form_label(registrationForm.plainPassword, 'Password', {'label_attr': {'class': 'block text-sm text-gray-700 dark:text-gray-300 font-medium'}}) }}
-            {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'block w-full shadow-sm border-gray-300 dark:border-transparent dark:text-gray-800 rounded-md border p-2 mt-1 mb-2'}})}}
+            {{ form_label(registrationForm.plainPassword, 'Password', {'label_attr': {'class': 'block text-sm text-white font-medium'}}) }}
+            {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'block w-full shadow-sm border-gray-300  rounded-md border p-2 mt-1 mb-2'}})}}
             {{ form_errors(registrationForm.plainPassword) }}
         </div>
           <div class="flex items-center mt-4 mb-4">
-            {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'h-4 w-4 rounded border-gray border text-indigo-300 mr-2'}}) }}
-            {{ form_label(registrationForm.agreeTerms, 'Accept Terms & Conditions', {'label_attr': {'class': 'text-sm text-gray-700 dark:text-gray-300 font-medium'}}) }}
+            {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'h-4 w-4 rounded border-gray border  mr-2'}}) }}
+            {{ form_label(registrationForm.agreeTerms, 'Accept Terms & Conditions', {'label_attr': {'class': 'text-sm text-white-200  font-medium'}}) }}
         </div>
 
          <div>
             <button type="submit" 
-                    class="block w-full shadow-sm border-transparent bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-400 text-white rounded-md border p-2 mt-4 mb-2">SIGN UP
+                    class="block w-full shadow-sm border-transparent bg-indigo-600 hover:bg-indigo-700  text-white rounded-md border p-2 mt-4 mb-2">SIGN UP
             </button>
         </div>
     {{ form_end(registrationForm) }}
 
 
-    <div class="mt-2 text-center text-gray-600 dark:text-gray-400">
+    <div class="mt-2 text-center text-gray-400">
         I already have an account <a href="{{ path('app_login') }}" class="text-blue-600 ">Login here</a>
     </div>
 

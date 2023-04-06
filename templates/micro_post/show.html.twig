@@ -1,29 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Post - {{post.title}} {% endblock %}
+{% block title %}
+	Post -
+	{{post.title}}
+{% endblock %}
 
 {% block bread %}
--> Post
- {% endblock %}
+	-> Post
+{% endblock %}
 
 {% block body %}
-    {{ include('micro_post/_post.html.twig' , {post: post}) }}
+	{{ include('micro_post/_post.html.twig' , {post: post}) }}
 
-    <div class="mt-4"> 
-    {% for comment in post.comments %}
-        <div class=" mb-5 ml-5 mr-5 mt-5 block p-6 bg-gray-400 border border-gray-400 rounded-lg shadow ">
-            <div class="flex items-center">
-                <div class="inline-block bg-gray-200 rounded-full text-3xl w-8 h-8 ring-2 ring-white mr-2"></div>
-                <div>
-                    <div class="font-medium text-gray-800"> {{comment.author.email}} </div>
-                    <div class="font-light text-gray-500">{{comment.created | date("M j, Y")}} </div>
-                </div>
-            </div>
-            <div class="flex">
-                <div class="border border-gray-300 ml-4 mr-6 pb-12"></div>
-                <div> {{ comment.text }}</div>
-            </div>
-        </div>
-    {% endfor %}
-    <div>
-{% endblock %}
+	<div class="mt-4 data-te-chip-init data-te-ripple-init">
+		{% for comment in post.comments %}
+			<div class=" mb-5 ml-5 mr-5 mt-5 block p-6 bg-gray-400 border border-gray-400 rounded-lg shadow ">
+				<div class="flex items-center">
+					<div class=" w-10 h-10 inline-block bg-gray-200 rounded-full text-3xl  ring-2 ring-white mr-5"></div>
+					<div >
+						<div class="font-medium text-gray-800 mb-5 mr-5">
+							{{comment.author.email}}
+						</div>
+						<div class="font-light text-gray-500">{{comment.created | date("M j, Y")}}
+						</div>
+					</div>
+				</div>
+				<div class="flex">
+					<div class=" ml-4 mr-6 pb-12 mt-5 pt-5"></div>
+					<div>
+						{{ comment.text }}</div>
+				</div>
+			</div>
+		{% endfor %}
+		<div>
+		{% endblock %}

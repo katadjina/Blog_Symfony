@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class MicroPostType extends AbstractType
 {
+    //eventually Im not using buildForm
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder

@@ -19,7 +19,8 @@ class LikeController extends AbstractController
         $currentUser = $this->getUser();
         $post->addLikedBy($currentUser);
         $posts->add($post, true);
-
+        
+      //request -> headers property // used for retrieving
         return $this->redirect($request->headers->get('referer'));
     }
 

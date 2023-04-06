@@ -21,9 +21,6 @@ class Category
     #[ORM\ManyToMany(mappedBy: 'categories', targetEntity: MicroPost::class)]
     private Collection $microPosts;
 
-
-  
-    
     public function __construct()
     {
         $this->microPosts = new ArrayCollection();
