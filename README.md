@@ -14,6 +14,6 @@ Sign in page:
 <img width="1201" alt="image" src="https://github.com/katadjina/Blog_Symfony/assets/94002120/b28e447b-f92d-42a2-8840-8271d25ec8c4">
 
 
-Post Preview:
+Post Preview for logged in users:
 
-<img width="1171" alt="image" src="https://github.com/katadjina/Blog_Symfony/assets/94002120/e3a6d665-8a5c-4148-ae37-23122ddcc9cc">
+<img width="1152" alt="image" src="https://github.com/katadjina/Blog_Symfony/assets/94002120/c0fab1de-8d1a-4166-8d0d-3b7acebd2c1f">
