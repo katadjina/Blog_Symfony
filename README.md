@@ -2,7 +2,7 @@ Blog_ allows user to read posts added by users and to create/modify/delete & lik
 
 Home Page:
 
-<img width="1192" alt="image" src="https://github.com/katadjina/Blog_Symfony/assets/94002120/343e6092-0d4b-437d-b093-633e5a659dc8">
+<img width="1380" alt="image" src="https://github.com/katadjina/Blog_Symfony/assets/94002120/227010bc-65f6-4dd4-879f-4d0c57367c25">
 
 Register page:
 
