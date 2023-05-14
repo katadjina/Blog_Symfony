@@ -15,3 +15,5 @@ Sign in page:
 Post Preview:
 
 <img width="1209" alt="image" src="https://github.com/katadjina/Blog_Symfony/assets/94002120/8ea35721-accd-4139-9af1-648b139e2bfd">
+
+<img width="1138" alt="image" src="https://github.com/katadjina/Blog_Symfony/assets/94002120/c4045be5-310c-4531-ac2f-652ed7004498">
