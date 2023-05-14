@@ -5,12 +5,13 @@ Home Page:
 <img width="1380" alt="image" src="https://github.com/katadjina/Blog_Symfony/assets/94002120/227010bc-65f6-4dd4-879f-4d0c57367c25">
 
 Register page:
+<img width="1166" alt="image" src="https://github.com/katadjina/Blog_Symfony/assets/94002120/c6a0ec7f-a781-4cc5-960b-a830c80bcbd6">
 
-<img width="1220" alt="image" src="https://github.com/katadjina/Blog_Symfony/assets/94002120/13991598-b63d-41a5-b32e-f0e608ce6fc1">
+
 
 Sign in page:
-
-<img width="1186" alt="image" src="https://github.com/katadjina/Blog_Symfony/assets/94002120/34401e3a-75e8-46fd-9268-3f74f3a25315">
+<img width="1201" alt="image" src="https://github.com/katadjina/Blog_Symfony/assets/94002120/b28e447b-f92d-42a2-8840-8271d25ec8c4">
+$
 
 Post Preview:
 
