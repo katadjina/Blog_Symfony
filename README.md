@@ -1,6 +1,13 @@
 # Description
 Blog_ allows user to read posts added by users and to create/modify/delete & like/comment posts created by logged in users.
 
+## Concepts applied:
+- user registration
+- user authentication
+- performing CRUD operations on a db
+- filtering content
+- user roles (admin / user)
+
 # Home Page:
 <img width="1136" alt="image" src="https://github.com/katadjina/Blog_Symfony/assets/94002120/9746227c-bf5d-48fa-b47f-6782f2707679">
 
