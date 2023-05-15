@@ -1,4 +1,4 @@
-# Desrciption
+# Description
 Blog_ allows user to read posts added by users and to create/modify/delete & liking/commenting posts created by logged in users.
 
 # Home Page:
