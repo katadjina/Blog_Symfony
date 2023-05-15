@@ -20,9 +20,8 @@ Blog_ allows user to read posts added by users and to create/modify/delete & lik
 # Installation
 
 ## Prerequisites
-List any prerequisites or dependencies required to run the project, such as:
 
-PHP version (e.g., PHP 7.4 or higher)
-Composer (dependency manager for PHP)
-Symfony CLI (command-line tool for Symfony projects)
-Database server (e.g., MySQL, PostgreSQL)
+- PHP version (e.g., PHP 7.4 or higher)
+- Composer (dependency manager for PHP)
+- Symfony CLI (command-line tool for Symfony projects)
+- Database server (e.g., MySQL, PostgreSQL)
