@@ -33,8 +33,8 @@ Blog_ allows user to read posts added by users and to create/modify/delete & lik
 
 ## Database setup 
 
-- `php bin/console doctrine:database:create`
-- `php bin/console doctrine:migrations:migrate`
+ `php bin/console doctrine:database:create`
+ `php bin/console doctrine:migrations:migrate`
 
 ## Start the Development Server
 navigate to the project's root directory and run:
