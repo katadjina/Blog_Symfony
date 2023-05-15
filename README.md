@@ -15,3 +15,14 @@ Blog_ allows user to read posts added by users and to create/modify/delete & lik
 # Post Preview for logged in users:
 
 <img width="1152" alt="image" src="https://github.com/katadjina/Blog_Symfony/assets/94002120/c0fab1de-8d1a-4166-8d0d-3b7acebd2c1f">
+
+
+# Installation
+
+## Prerequisites
+List any prerequisites or dependencies required to run the project, such as:
+
+PHP version (e.g., PHP 7.4 or higher)
+Composer (dependency manager for PHP)
+Symfony CLI (command-line tool for Symfony projects)
+Database server (e.g., MySQL, PostgreSQL)
