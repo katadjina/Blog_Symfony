@@ -25,3 +25,8 @@ Blog_ allows user to read posts added by users and to create/modify/delete & lik
 - Composer (dependency manager for PHP)
 - Symfony CLI (command-line tool for Symfony projects)
 - Database server (e.g., MySQL, PostgreSQL)
+
+
+## Installation of dependencies using Composer
+
+	- `composer install`
